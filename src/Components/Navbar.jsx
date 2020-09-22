@@ -1,0 +1,51 @@
+import React from "react";
+import logo from "../images/logo.svg";
+
+import { FaAlignRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+export default class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isToggle: false };
+  }
+
+  handleToggle = () => {
+    this.setState({ isToggle: !this.state.isToggle });
+  };
+
+  render() {
+    return (
+      <nav className="navbar">
+        <div className="nav-center">
+          <div className="nav-header">
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Beach Resort"
+                style={{ width: "200px", height: "70px" }}
+              />
+            </Link>
+            <button
+              type="button"
+              className="nav-btn"
+              onClick={this.handleToggle}
+            >
+              <FaAlignRight className="nav-icon" />
+            </button>
+          </div>
+          <ul
+            className={this.state.isToggle ? "nav-links show-nav" : "nav-links"}
+          >
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/rooms">Rooms</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
